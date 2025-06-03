@@ -45,6 +45,14 @@
     width: 80%;
 }
 
+.w50{
+    width: 50%;
+}
+
+.w48{
+    width: 48%;
+}
+
 .w24{
     width: 24%;
 }
@@ -249,4 +257,12 @@ html {
 
 .fecha{
     font-size: 15px;
+}
+
+.detalle-image {
+  width: 100%;
+  border-radius:12px;
+  margin-bottom: 0.8em;
+  object-fit: cover;
+  height: 100%;
 }

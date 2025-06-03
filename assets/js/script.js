@@ -40,7 +40,7 @@ fetch(myRequestMovies)
         </div>
         <div class="divTexto w100">
           <h3 class="dm-sansBold">${movie.title}</h3>
-          <p class="dm-sans pt0-5 fecha">Estreno: ${movie.release_date}
+          <p class="dm-sans pt0-5 fecha">Estreno: ${movie.release_date}</p>
         </div>
       `;
 

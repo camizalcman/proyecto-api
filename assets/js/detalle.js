@@ -34,21 +34,23 @@ fetch(myRequestDetalle)
 
   function armarDetalle(data){
     const container = document.getElementById("detalle-container");
-    container.classList.add("w90","df", "wrap", "centerX", "centerY", "spaceb")
+    container.classList.add("w90","centerX", "centerY", "spaceb")
 
     const movieDiv = document.createElement("div");
-    movieDiv.classList.add("w24", "movieDiv", "df", "centerY" , "columna")
+    movieDiv.classList.add("df", "spaceb")
     movieDiv.innerHTML = `
-        <div class="fotoContainer">
-          <img src="https://image.tmdb.org/t/p/w500${data.backdrop_path}" alt="${data.title}" class="movie-image posRel">
+        <div class="w50 vh60">
+          <img src="https://image.tmdb.org/t/p/w500${data.backdrop_path}" alt="${data.title}" class="detalle-image posRel">
         </div>
         <div class="df pt0-5 puntaje posAb">
             <i class='bx  bxs-star amarillo pr0-5'></i> 
             <p class="dm-sans">${data.vote_average.toFixed(1)}</p>
         </div>
-        <div class="divTexto w100">
+        <div class="w48">
           <h3 class="dm-sansBold">${data.title}</h3>
-          <p class="dm-sans pt0-5 fecha">Estreno: ${data.release_date}
+          <p class="dm-sans pt0-5 fecha">${data.overview}</p>
+          <p class="dm-sans pt0-5 fecha">Género: ${data.genres.map(genre => genre.name).join(', ')}</p>
+          <p class="dm-sans pt0-5 fecha">Estreno: ${data.release_date}</p>
         </div>
       `;
 
