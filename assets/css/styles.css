@@ -80,6 +80,48 @@
     position: relative;
 }
 
+.pt0-5{
+    padding-top: 0.5em;
+}
+
+.pt1{
+    padding-top: 1em;
+}
+
+.pt2{
+    padding-top: 2em;
+}
+
+.pt4{
+    padding-top: 4em;
+}
+
+.pb1{
+    padding-bottom:1em ;
+}
+
+.pr0-5{
+    padding-right: 0.5em;
+}
+
+.principal{
+    margin-left: 20%;
+}
+
+.dm-sans{
+  font-family: "DM Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400; 
+  font-style: normal;
+}
+
+.dm-sansBold{
+  font-family: "DM Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 900; 
+  font-style:normal;
+}
+
 
 /*CLASES PARTICULARES*/
 
@@ -90,11 +132,33 @@ body{
 .movieDiv {
   color: rgb(255, 255, 255);
   padding-bottom: 2em;
+  text-align: start;
+  flex-direction: column;
+  align-items: start;
+}
+
+.fotoContainer{
+  overflow: hidden;
+  height: 35vh;
+  border-radius:12px;
+  margin-bottom: 0.8em;
+}
+
+.movieDiv:hover .movie-image {
+    transform: scale(1.2);
 }
 
 .movie-image {
   width: 100%;
   border-radius:12px;
+  margin-bottom: 0.8em;
+  object-fit: cover;
+  height: 35vh;
+  transition: transform 0.4s ease;
+}
+
+.divTexto{
+    height: 5em;
 }
 
 .listaNav li{
@@ -106,7 +170,7 @@ body{
   color: #ffffff;
   text-decoration: none;
   font-weight: 500;
-  font-family: 'Poppins', sans-serif;
+  font-family:"DM Sans", sans-serif;
   transition: color 0.3s;
 }
 
@@ -114,20 +178,12 @@ body{
   color: #d47800;
 }
 
-.pt2{
-    padding-top: 2em;
+.listaNav li a.active {
+  color: #d47800;
 }
 
-.pt4{
-    padding-top: 2em;
-}
-
-.principal{
-    margin-left: 20%;
-}
-
-.poppins{
-    font-family: 'Poppins', sans-serif;
+.listaNav li a.active i {
+  color: inherit;
 }
 
 aside{
@@ -142,6 +198,55 @@ html {
 }
 
 .fotoBanner{
-    border-radius: 12px;
     object-fit: cover;
+    width: 100%;
+    height: 60vh;
+    display: block;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+.banner {
+  position: relative;
+}
+
+.degrade {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 70%;
+  background: linear-gradient(to top, #000000, transparent);
+  border-radius: 12px;
+}
+
+.textoHome{
+    position: absolute;
+    z-index: 100;
+    bottom: 2em;
+    left: 2em;
+}
+
+.h2Home{
+    font-size: 45px;
+}
+
+.h3Home{
+    font-size: 20px;
+}
+
+.amarillo{
+    color: #c2b612;
+}
+
+.puntaje{
+    background-color:#0b0f36 ;
+    border-radius: 20px;
+    padding: 0.2em 0.6em;
+    margin-top: 0.6em;
+    margin-left: 0.6em;
+}
+
+.fecha{
+    font-size: 15px;
 }

@@ -7,34 +7,47 @@
     <link rel="stylesheet" type="text/css" href="assets/css/styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet"> 
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
 </head>
 <body>
     <header></header>
     <main>
         <div class="df">
             <aside class="w20 vh100 fixed">
-                <h1 class="blanco poppins">CineApp</h1>
+                <h1 class="blanco dm-sansBold">CineApp</h1>
                 <nav>
                     <ul class="listaNav">
-                        <li><a href="#inicio">Inicio</a></li>
-                        <li><a href="#peliculas">Películas</a></li>
-                        <li><a href="#series">Series</a></li>
+                        <li><a href="#inicio"><i class='bx bx-home pr0-5'></i>Inicio</a></li>
+                        <li><a href="#peliculas"><i class='bx  bx-film pr0-5'></i> Películas</a></li>
+                        <li><a href="#series"><i class='bx  bx-movie-play pr0-5'></i> Series</a></li>
                     </ul>
                 </nav>
             </aside>
             <div class="df columna w80 principal">
-                <section id="inicio" class="df centerX centerY pt2 posRel">
-                    <img src="assets/imgs/estrenos.jpeg" alt="" class="w100 fotoBanner w90 vh60">
+                <section id="inicio" class="df centerX centerY pt2 posRel pb1">
+                    <div class="banner w90 vh60">
+                        <div class="degrade"></div>
+                        <img src="assets/imgs/estrenos.jpeg" alt="" class="w100 fotoBanner">
+                        <div class="textoHome">
+                            <h2 class="blanco dm-sansBold h2Home">Nuevos estrenos</h2>
+                            <h3 class="blanco dm-sans h3Home">Preparate para maratonear los lanzamientos más esperados</h3>
+                        </div>
+                        
+                    </div>
                 </section>
 
-                <section id="peliculas" class="df centerX centerY pt4 columna blanco">
-                    <h1 class="poppins">Películas</h1>
+                <section id="peliculas" class="df centerX centerY pt2 columna blanco">
+                    <div class="w90 pb1">
+                        <h1 class="dm-sansBold">Películas</h1>
+                    </div>
                     <div id="movies-container"></div>
                 </section>
 
-                <section id="series" class="df centerX centerY pt4 columna blanco">
-                    <h1 class="poppins">Series</h1>
+                <section id="series" class="df centerX centerY pt2 columna blanco">
+                    <div class="w90 pb1">
+                        <h1 class="dm-sansBold">Series</h1>
+                    </div>
                     <div id="series-container"></div>
                 </section>
             </div>

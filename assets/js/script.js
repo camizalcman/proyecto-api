@@ -22,6 +22,7 @@ fetch(myRequestMovies)
   
     const movies = data.results;
     console.log(movies);
+
     const container = document.getElementById("movies-container");
     container.classList.add("w90","df", "wrap", "centerX", "centerY", "spaceb")
 
@@ -29,8 +30,17 @@ fetch(myRequestMovies)
       const movieDiv = document.createElement("div");
       movieDiv.classList.add("w24", "movieDiv", "df", "centerY" , "columna")
       movieDiv.innerHTML = `
-        <img src="https://image.tmdb.org/t/p/w500${movie.backdrop_path}" alt="${movie.title}" class="movie-image">
-        <h3 class="poppins">${movie.title}</h3>
+        <div class="fotoContainer">
+          <img src="https://image.tmdb.org/t/p/w500${movie.backdrop_path}" alt="${movie.title}" class="movie-image posRel">
+        </div>
+        <div class="df pt0-5 puntaje posAb">
+            <i class='bx  bxs-star amarillo pr0-5'></i> 
+            <p class="dm-sans">${movie.vote_average.toFixed(1)}</p>
+        </div>
+        <div class="divTexto w100">
+          <h3 class="dm-sansBold">${movie.title}</h3>
+          <p class="dm-sans pt0-5 fecha">Estreno: ${movie.release_date}
+        </div>
       `;
       container.appendChild(movieDiv);
     });
@@ -49,6 +59,8 @@ fetch(myRequestSeries)
   .then(response => response.json())
   .then(data => {
     const series = data.results;
+    console.log(series);
+
     const seriesContainer = document.getElementById("series-container");
     seriesContainer.classList.add("w90", "df", "wrap", "centerX", "centerY", "spaceb");
 
@@ -56,8 +68,17 @@ fetch(myRequestSeries)
       const serieDiv = document.createElement("div");
       serieDiv.classList.add("w24", "movieDiv", "df", "centerY", "columna");
       serieDiv.innerHTML = `
-        <img src="https://image.tmdb.org/t/p/w500${serie.backdrop_path}" alt="${serie.name}" class="movie-image">
-        <h3 class="poppins">${serie.name}</h3>
+        <div class="fotoContainer">
+          <img src="https://image.tmdb.org/t/p/w500${serie.backdrop_path}" alt="${serie.name}" class="movie-image posRel">
+        </div>
+        <div class="df pt0-5 puntaje posAb">
+            <i class='bx  bxs-star amarillo pr0-5'></i> 
+            <p class="dm-sans">${serie.vote_average.toFixed(1)}</p>
+        </div>
+        <div class="divTexto w100">
+          <h3 class="dm-sansBold">${serie.name}</h3>
+          <p class="dm-sans pt0-5 fecha">Estreno: ${serie.first_air_date}
+        </div>
       `;
       seriesContainer.appendChild(serieDiv);
     });
@@ -65,3 +86,4 @@ fetch(myRequestSeries)
   .catch(error => {
     console.error("Ocurrió un error:", error);
   });
+
