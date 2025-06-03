@@ -1,7 +1,8 @@
-const myAPIKey = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2MTQ0YWQ2MmQ2NTZkY2Q3YjRkM2U2ZmZhYjE5MWRiNCIsIm5iZiI6MTc0ODIwMjIwMy45MTUsInN1YiI6IjY4MzM3MmRiYWIzNzcyN2ExNjJiNzFjYyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.9XeM-ZOVzNNuggdysdtNInc7duRx1KzF3BFLKRzYrkQ";
+const myAPIKey = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2MTQ0YWQ2MmQ2NTZkY2Q3YjRkM2U2ZmZhYjE5MWRiNCIsIm5iZiI6MTc0ODIwMjIwMy45MTUsInN1YiI6IjY4MzM3MmRiYWIzNzcyN2ExNjJiNzFjYyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.9XeM-ZOVzNNuggdysdtNInc7duRx1KzF3BFLKRzYrkQ";
 
+//request pelis
 const myHeaders = {
-    "Authorization": myAPIKey, //envio la clave de autorización
+    "Authorization": "Bearer " + myAPIKey, //envio la clave de autorización
     "Content-Type": "application/json", //declaro el tipo de contenido
     "Accept": "application/json" //declaro el tipo de contenido que acepto en la respuesta
 }
@@ -42,6 +43,12 @@ fetch(myRequestMovies)
           <p class="dm-sans pt0-5 fecha">Estreno: ${movie.release_date}
         </div>
       `;
+
+        //al hacer click, te lleva a la pag detalle y le paso el ID por URL
+        movieDiv.addEventListener("click", () => {
+        window.location.href = `detalle.html?id=${movie.id}`;
+        });
+
       container.appendChild(movieDiv);
     });
   })
@@ -50,6 +57,7 @@ fetch(myRequestMovies)
   });
 
 
+//request series
 const seriesURL = new URL("https://api.themoviedb.org/3/discover/tv?include_adult=false&language=es-ES&page=1&sort_by=popularity.desc");
 
 const myRequestSeries = new Request(seriesURL, myRequestParams);
