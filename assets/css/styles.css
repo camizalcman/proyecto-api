@@ -104,6 +104,10 @@
     padding-top: 4em;
 }
 
+.mt1{
+    margin-top: 1em;
+}
+
 .pb1{
     padding-bottom:1em ;
 }
@@ -265,4 +269,8 @@ html {
   margin-bottom: 0.8em;
   object-fit: cover;
   height: 100%;
+}
+
+.tituloDetalle{
+    font-size: 32px;
 }

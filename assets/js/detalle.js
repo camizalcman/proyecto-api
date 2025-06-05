@@ -48,11 +48,12 @@ fetch(myRequestDetalle)
             <i class='bx  bxs-star amarillo pr0-5'></i> 
             <p class="dm-sans">${data.vote_average.toFixed(1)}</p>
         </div>
-        <div class="w48">
-          <h3 class="dm-sansBold">${data.title}</h3>
-          <p class="dm-sans pt0-5 fecha">${data.overview}</p>
-          <p class="dm-sans pt0-5 fecha">Género: ${data.genres.map(genre => genre.name).join(', ')}</p>
-          <p class="dm-sans pt0-5 fecha">Estreno: ${data.release_date}</p>
+        <div class="w48 pt0-5">
+          <h3 class="dm-sansBold tituloDetalle">${data.title}</h3>
+          <p class="dm-sans pt0-5 fecha mt1">${data.overview}</p>
+          <p class="dm-sans pt0-5 fecha mt1">Género: ${data.genres.map(genre => genre.name).join(', ')}</p>
+          <p class="dm-sans pt0-5 fecha mt1">Estreno: ${data.release_date}</p>
+          <button class="w100">Agregar voto</button>
         </div>
       `;
 
