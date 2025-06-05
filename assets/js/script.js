@@ -27,7 +27,9 @@ fetch(myRequestMovies)
   })
   .catch(error => {
     console.error("Ocurrió un error:", error);
+    mostrarError()
   });
+
 
 
 function cargarDataPeli(data){
@@ -66,6 +68,12 @@ function cargarDataPeli(data){
     });
 }
 
+function mostrarError(){
+  const divError =document.getElementById("error");
+  divError.innerHTML = ` 
+  <p class="dm-sans">Ocurrió un error</p>
+  `;
+}
 
 //request series
 const seriesURL = new URL("https://api.themoviedb.org/3/discover/tv?include_adult=false&language=es-ES&page=1&sort_by=popularity.desc");
@@ -76,11 +84,24 @@ const myDataSeries = fetch(myRequestSeries);
 fetch(myRequestSeries)
   .then(response => response.json())
   .then(data => {
-    const series = data.results;
+    setTimeout(()=> {
+      cargarDataSerie(data)
+    }, 2000) 
+  })
+  .catch(error => {
+    console.error("Ocurrió un error:", error);
+    //mostrar visualmente el error
+  });
+
+function cargarDataSerie(data){
+  const series = data.results;
     console.log(series);
 
     const seriesContainer = document.getElementById("series-container");
     seriesContainer.classList.add("w90", "df", "wrap", "centerX", "centerY", "spaceb");
+
+    const loadingDiv = document.getElementById("loadingS");
+    loadingDiv.innerHTML=""
 
     series.forEach(serie => {
       const serieDiv = document.createElement("div");
@@ -100,9 +121,4 @@ fetch(myRequestSeries)
       `;
       seriesContainer.appendChild(serieDiv);
     });
-  })
-  .catch(error => {
-    console.error("Ocurrió un error:", error);
-    //mostrar visualmente el error
-  });
-
+}
