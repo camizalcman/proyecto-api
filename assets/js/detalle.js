@@ -6,6 +6,7 @@ console.log("ID:", id)
 
 //armo la url con el id puntual de la película/serie
 const detalleURL = `https://api.themoviedb.org/3/movie/${id}?language=es-ES`;
+//postURL
 
 const myHeaders = {
   "Authorization": "Bearer " + myAPIKey,
@@ -20,8 +21,9 @@ const myRequestParams = {
 
 const myRequestDetalle = new Request(detalleURL, myRequestParams);
 
-fetch(myRequestDetalle)
+fetch(myRequestDetalle) 
   .then(response => response.json())
+  //manejar este posible error http
   .then(data => {
     console.log("Detalle de película:", data);
 

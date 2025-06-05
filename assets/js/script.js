@@ -20,12 +20,25 @@ const myDataMovies = fetch(myRequestMovies);
 fetch(myRequestMovies)
   .then(response => response.json())
   .then(data => {
-  
+    
+    setTimeout(()=> {
+      cargarDataPeli(data)
+    }, 2000) 
+  })
+  .catch(error => {
+    console.error("Ocurrió un error:", error);
+  });
+
+
+function cargarDataPeli(data){
     const movies = data.results;
     console.log(movies);
 
     const container = document.getElementById("movies-container");
-    container.classList.add("w90","df", "wrap", "centerX", "centerY", "spaceb")
+    container.classList.add("w90","df", "wrap", "centerX", "centerY", "spaceb");
+
+    const loadingDiv = document.getElementById("loading");
+    loadingDiv.innerHTML=""
 
     movies.forEach(movie => {
       const movieDiv = document.createElement("div");
@@ -51,10 +64,7 @@ fetch(myRequestMovies)
 
       container.appendChild(movieDiv);
     });
-  })
-  .catch(error => {
-    console.error("Ocurrió un error:", error);
-  });
+}
 
 
 //request series
@@ -93,5 +103,6 @@ fetch(myRequestSeries)
   })
   .catch(error => {
     console.error("Ocurrió un error:", error);
+    //mostrar visualmente el error
   });
 
