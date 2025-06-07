@@ -53,10 +53,62 @@ fetch(myRequestDetalle)
           <p class="dm-sans pt0-5 fecha mt1">${data.overview}</p>
           <p class="dm-sans pt0-5 fecha mt1">Género: ${data.genres.map(genre => genre.name).join(', ')}</p>
           <p class="dm-sans pt0-5 fecha mt1">Estreno: ${data.release_date}</p>
-          <button class="w100">Agregar voto</button>
         </div>
       `;
 
       container.appendChild(movieDiv);
+  }
+
+const botonVotar = document.getElementById("votar");
+botonVotar.addEventListener("click", modalVoto);
+    
+  function modalVoto(){
+    const modal = document.getElementById("miModal");
+    modal.classList.add("modalEstilo")
+
+    modal.innerHTML = "";
+
+    //Crear contenedor
+    const contenedor = document.createElement("div");
+    contenedor.style.position = "relative";
+    contenedor.style.padding = "20px";
+
+    contenedor.innerHTML=`
+    <div class="w48 pt0-5">
+          <h3 class="dm-sansBold tituloDetalle">AA</h3>
+          <p class="dm-sans pt0-5 fecha mt1">AA</p>
+
+    </div>
+    `;
+
+    // Crear botón de cierre (la X)
+    const botonCerrar = document.createElement("span");
+    botonCerrar.innerHTML=`
+    <i class='bx  bx-x'></i> 
+    `;
+
+    botonCerrar.style.position = "absolute";
+    botonCerrar.style.top = "5px";
+    botonCerrar.style.right = "10px";
+    botonCerrar.style.cursor = "pointer";
+    botonCerrar.style.fontSize = "26px";
+
+    botonCerrar.addEventListener("click", () => {
+      modal.close();
+    });
+
+    // Crear input
+    const input = document.createElement("input");
+    input.type = "text";
+    input.placeholder = "Escribí algo...";
+    input.style.width = "100%";
+    input.style.padding = "10px";
+    input.style.marginTop = "20px";
+
+    // Agregar todo al contenedor y mostrar modal
+    contenedor.appendChild(botonCerrar);
+    contenedor.appendChild(input);
+    modal.appendChild(contenedor);
+    modal.showModal();
   }
     

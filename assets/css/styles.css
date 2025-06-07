@@ -274,3 +274,22 @@ html {
 .tituloDetalle{
     font-size: 32px;
 }
+
+.botonVoto{
+    background-color: white;
+    border-radius: 12px;
+    min-height: 2.8em;
+    margin-top: 1em;
+    color:#0b0f36;
+    font-size: medium;
+    width: 50%;
+    border: none;
+}
+
+.modalEstilo{
+    width: 50%;
+    border-radius: 12px;
+    border: none;
+
+}
+
