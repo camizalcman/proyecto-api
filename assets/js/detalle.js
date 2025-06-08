@@ -61,8 +61,9 @@ fetch(myRequestDetalle)
 
 const botonVotar = document.getElementById("votar");
 botonVotar.addEventListener("click", modalVoto);
-    
-  function modalVoto(){
+let valorSeleccionado;
+
+function modalVoto(){
     const modal = document.getElementById("miModal");
     modal.classList.add("modalEstilo")
 
@@ -74,10 +75,9 @@ botonVotar.addEventListener("click", modalVoto);
     contenedor.style.padding = "20px";
 
     contenedor.innerHTML=`
-    <div class="w48 pt0-5">
-          <h3 class="dm-sansBold tituloDetalle">AA</h3>
-          <p class="dm-sans pt0-5 fecha mt1">AA</p>
-
+    <div class="w90 pt0-5">
+          <h3 class="dm-sansBold tituloDetalle">Agregá tu valoración</h3>
+          <p class="dm-sans pt0-5 fecha mt1">Elegí un puntaje del 1 al 10</p>
     </div>
     `;
 
@@ -97,18 +97,44 @@ botonVotar.addEventListener("click", modalVoto);
       modal.close();
     });
 
-    // Crear input
-    const input = document.createElement("input");
-    input.type = "text";
-    input.placeholder = "Escribí algo...";
-    input.style.width = "100%";
-    input.style.padding = "10px";
-    input.style.marginTop = "20px";
+  // Select del 1 al 10
+  const select = document.createElement("select");
+  select.style.width = "70%";
+  select.style.padding = "10px";
+  select.style.marginTop = "20px";
+  select.style.marginRight = "20px";
+  select.style.borderRadius = "6px"
 
-    // Agregar todo al contenedor y mostrar modal
-    contenedor.appendChild(botonCerrar);
-    contenedor.appendChild(input);
-    modal.appendChild(contenedor);
-    modal.showModal();
+  for (let i = 1; i <= 10; i++) {
+    const opcion = document.createElement("option");
+    opcion.value = i;
+    opcion.textContent = i;
+    select.appendChild(opcion);
   }
+
+  // Botón enviar
+  const botonEnviar = document.createElement("button");
+  botonEnviar.textContent = "Enviar";
+  botonEnviar.classList.add=("dm-sans")
+  botonEnviar.style.marginTop = "20px";
+  botonEnviar.style.padding = "10px 40px";
+  botonEnviar.style.cursor = "pointer";
+  botonEnviar.style.fontSize = "14px";
+  botonEnviar.style.borderRadius = "6px";
+  botonEnviar.style.backgroundColor = "#000213";
+  botonEnviar.style.color = "white";
+  botonEnviar.addEventListener("click", () => {
+    valorSeleccionado = select.value;
+    console.log("Valor seleccionado:", valorSeleccionado);
+    modal.close();
+  });
+
+  // Agregar elementos al contenedor y mostrar
+  contenedor.appendChild(botonCerrar);
+  contenedor.appendChild(select);
+  contenedor.appendChild(botonEnviar);
+  modal.appendChild(contenedor);
+  modal.showModal();
+}
+  
     

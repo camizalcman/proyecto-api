@@ -27,10 +27,11 @@ fetch(myRequestMovies)
   })
   .catch(error => {
     console.error("Ocurrió un error:", error);
+    loadingDiv.innerHTML=""
     mostrarError()
   });
 
-
+const loadingDiv = document.getElementById("loading");
 
 function cargarDataPeli(data){
     const movies = data.results;
@@ -39,7 +40,6 @@ function cargarDataPeli(data){
     const container = document.getElementById("movies-container");
     container.classList.add("w90","df", "wrap", "centerX", "centerY", "spaceb");
 
-    const loadingDiv = document.getElementById("loading");
     loadingDiv.innerHTML=""
 
     movies.forEach(movie => {
@@ -70,8 +70,14 @@ function cargarDataPeli(data){
 
 function mostrarError(){
   const divError =document.getElementById("error");
+  const divError1 =document.getElementById("error1");
   divError.innerHTML = ` 
   <p class="dm-sans">Ocurrió un error</p>
+   <img src="assets/imgs/advertencia.png" width="90px" class="pt1 pl2">
+  `;
+  divError1.innerHTML = ` 
+  <p class="dm-sans">Ocurrió un error</p>
+   <img src="assets/imgs/advertencia.png" width="90px" class="pt1 pl2">
   `;
 }
 
@@ -90,8 +96,11 @@ fetch(myRequestSeries)
   })
   .catch(error => {
     console.error("Ocurrió un error:", error);
-    //mostrar visualmente el error
+    loadingDivS.innerHTML=""
+    mostrarError()
   });
+
+const loadingDivS = document.getElementById("loadingS");
 
 function cargarDataSerie(data){
   const series = data.results;
@@ -100,8 +109,7 @@ function cargarDataSerie(data){
     const seriesContainer = document.getElementById("series-container");
     seriesContainer.classList.add("w90", "df", "wrap", "centerX", "centerY", "spaceb");
 
-    const loadingDiv = document.getElementById("loadingS");
-    loadingDiv.innerHTML=""
+    loadingDivS.innerHTML=""
 
     series.forEach(serie => {
       const serieDiv = document.createElement("div");
