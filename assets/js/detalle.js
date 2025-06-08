@@ -2,11 +2,20 @@ const myAPIKey = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2MTQ0YWQ2MmQ2NTZkY2Q3YjRkM2U2Z
 
 const params = new URLSearchParams(window.location.search); //lee los parámetros de la URL
 const id = params.get("id"); // obtiene el valor de id
-console.log("ID:", id)
+const tipo = params.get("tipo"); // "pelicula" o "serie"
 
-//armo la url con el id puntual de la película/serie
-const detalleURL = `https://api.themoviedb.org/3/movie/${id}?language=es-ES`;
-//postURL
+console.log("ID:", id);
+console.log("Tipo:", tipo);
+
+
+//verifico si es película o serie y armo la URL con su ID correspondiente
+let postURL;
+
+if (tipo === "pelicula") {
+  postURL = `https://api.themoviedb.org/3/movie/${id}?language=es-ES`;
+} else if (tipo === "serie") {
+  postURL = `https://api.themoviedb.org/3/tv/${id}?language=es-ES`;
+}
 
 const myHeaders = {
   "Authorization": "Bearer " + myAPIKey,
@@ -19,7 +28,8 @@ const myRequestParams = {
   headers: myHeaders
 };
 
-const myRequestDetalle = new Request(detalleURL, myRequestParams);
+const myRequestDetalle = new Request(postURL, myRequestParams);
+const loadingDiv = document.getElementById("loading");
 
 fetch(myRequestDetalle) 
   .then(response => response.json())
@@ -27,32 +37,50 @@ fetch(myRequestDetalle)
   .then(data => {
     console.log("Detalle de película:", data);
 
-    armarDetalle(data)
+    setTimeout(()=> {
+      armarDetalle(data, tipo)
+    }, 200) 
   })
   .catch(error => {
+    loadingDiv.innerHTML=""
     console.error("Ocurrió un error:", error);
+    mostrarError("error")
   });
 
 
-  function armarDetalle(data){
+  function armarDetalle(data, tipo){
     const container = document.getElementById("detalle-container");
     container.classList.add("w90","centerX", "centerY", "spaceb")
+
+    loadingDiv.innerHTML=""
+
+    //en la API llaman de manera distinta al título y la fecha de estreno en pelis que en series, por eso hago esta diferenciación. El resto de los datos se llaman igual
+    let titulo = "";
+    let fecha = "";
+
+    if (tipo === "pelicula") {
+      titulo = data.title;
+      fecha = data.release_date;
+    } else if (tipo === "serie") {
+      titulo = data.name;
+      fecha = data.first_air_date;
+    }
 
     const movieDiv = document.createElement("div");
     movieDiv.classList.add("df", "spaceb")
     movieDiv.innerHTML = `
         <div class="w50 vh60">
-          <img src="https://image.tmdb.org/t/p/w500${data.backdrop_path}" alt="${data.title}" class="detalle-image posRel">
+          <img src="https://image.tmdb.org/t/p/w500${data.backdrop_path}" alt="${titulo}" class="detalle-image posRel">
         </div>
         <div class="df pt0-5 puntaje posAb">
             <i class='bx  bxs-star amarillo pr0-5'></i> 
             <p class="dm-sans">${data.vote_average.toFixed(1)}</p>
         </div>
         <div class="w48 pt0-5">
-          <h3 class="dm-sansBold tituloDetalle">${data.title}</h3>
+          <h3 class="dm-sansBold tituloDetalle">${titulo}</h3>
           <p class="dm-sans pt0-5 fecha mt1">${data.overview}</p>
           <p class="dm-sans pt0-5 fecha mt1">Género: ${data.genres.map(genre => genre.name).join(', ')}</p>
-          <p class="dm-sans pt0-5 fecha mt1">Estreno: ${data.release_date}</p>
+          <p class="dm-sans pt0-5 fecha mt1">Estreno: ${fecha}</p>
         </div>
       `;
 
@@ -138,3 +166,10 @@ function modalVoto(){
 }
   
     
+function mostrarError(contenedor){
+  const divError =document.getElementById(contenedor);
+  divError.innerHTML = ` 
+  <p class="dm-sans">Ocurrió un error</p>
+   <img src="assets/imgs/advertencia.png" width="90px" class="pt1 pl2">
+  `;
+}

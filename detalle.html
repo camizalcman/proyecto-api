@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet"> 
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link rel="icon" href="assets/imgs/favicon.png" type="image/x-icon">
 </head>
 <body>
     <header></header>
@@ -28,7 +29,11 @@
             <div class="df columna w80 principal">
                 <section class="df centerX centerY pt2 columna blanco">
                     <div id="detalle-container"></div>
-                    
+                    <div id="loading" class="w100 df columna centerY pt2">
+                            <img src="assets/imgs/Rollo.png" alt="" width="60">
+                            <p class="dm-sans">Cargando...</p>
+                    </div>
+                    <div id="error"></div>
 
                     <div class="df divVoto w90">
                         <button id="votar" class="botonVoto dm-sansBold">Agregar voto</button>

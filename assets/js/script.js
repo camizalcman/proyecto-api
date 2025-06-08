@@ -23,12 +23,12 @@ fetch(myRequestMovies)
     
     setTimeout(()=> {
       cargarDataPeli(data)
-    }, 2000) 
+    }, 1000)
   })
   .catch(error => {
     console.error("Ocurrió un error:", error);
     loadingDiv.innerHTML=""
-    mostrarError()
+    mostrarError("error")
   });
 
 const loadingDiv = document.getElementById("loading");
@@ -59,23 +59,18 @@ function cargarDataPeli(data){
         </div>
       `;
 
-        //al hacer click, te lleva a la pag detalle y le paso el ID por URL
+        //al hacer click, te lleva a la pag detalle, le paso el ID por URL y si es serie o película
         movieDiv.addEventListener("click", () => {
-        window.location.href = `detalle.html?id=${movie.id}`;
+        window.location.href = `detalle.html?id=${movie.id}&tipo=pelicula`;
         });
 
       container.appendChild(movieDiv);
     });
 }
 
-function mostrarError(){
-  const divError =document.getElementById("error");
-  const divError1 =document.getElementById("error1");
+function mostrarError(contenedor){
+  const divError =document.getElementById(contenedor);
   divError.innerHTML = ` 
-  <p class="dm-sans">Ocurrió un error</p>
-   <img src="assets/imgs/advertencia.png" width="90px" class="pt1 pl2">
-  `;
-  divError1.innerHTML = ` 
   <p class="dm-sans">Ocurrió un error</p>
    <img src="assets/imgs/advertencia.png" width="90px" class="pt1 pl2">
   `;
@@ -92,12 +87,12 @@ fetch(myRequestSeries)
   .then(data => {
     setTimeout(()=> {
       cargarDataSerie(data)
-    }, 2000) 
+    }, 1000) 
   })
   .catch(error => {
     console.error("Ocurrió un error:", error);
     loadingDivS.innerHTML=""
-    mostrarError()
+    mostrarError("error1")
   });
 
 const loadingDivS = document.getElementById("loadingS");
@@ -127,6 +122,12 @@ function cargarDataSerie(data){
           <p class="dm-sans pt0-5 fecha">Estreno: ${serie.first_air_date}
         </div>
       `;
+
+       //al hacer click, te lleva a la pag detalle, le paso el ID por URL y si es serie o película
+        serieDiv.addEventListener("click", () => {
+        window.location.href = `detalle.html?id=${serie.id}&tipo=serie`;
+        });
+        
       seriesContainer.appendChild(serieDiv);
     });
 }
