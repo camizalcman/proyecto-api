@@ -18,7 +18,12 @@ const myRequestMovies = new Request(moviesURL, myRequestParams);
 const myDataMovies = fetch(myRequestMovies);
 
 fetch(myRequestMovies)
-  .then(response => response.json())
+    .then(response => {
+        if (!response.ok) {
+          throw new Error(`Error HTTP: ${response.status} ${response.statusText}`);
+        }
+        return response.json();
+      })
   .then(data => {
     
     setTimeout(()=> {
@@ -83,7 +88,12 @@ const myRequestSeries = new Request(seriesURL, myRequestParams);
 const myDataSeries = fetch(myRequestSeries);
 
 fetch(myRequestSeries)
-  .then(response => response.json())
+    .then(response => {
+        if (!response.ok) {
+          throw new Error(`Error HTTP: ${response.status} ${response.statusText}`);
+        }
+        return response.json();
+      })
   .then(data => {
     setTimeout(()=> {
       cargarDataSerie(data)
@@ -108,7 +118,7 @@ function cargarDataSerie(data){
 
     series.forEach(serie => {
       const serieDiv = document.createElement("div");
-      serieDiv.classList.add("w24", "movieDiv", "df", "centerY", "columna");
+      serieDiv.classList.add("w24", "movieDiv", "df", "centerY", "columna", "w90m", "w30t");
       serieDiv.innerHTML = `
         <div class="fotoContainer">
           <img src="https://image.tmdb.org/t/p/w500${serie.backdrop_path}" alt="${serie.name}" class="movie-image posRel">

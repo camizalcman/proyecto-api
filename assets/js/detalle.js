@@ -32,8 +32,13 @@ const myRequestDetalle = new Request(postURL, myRequestParams);
 const loadingDiv = document.getElementById("loading");
 
 fetch(myRequestDetalle) 
-  .then(response => response.json())
-  //manejar este posible error http
+    .then(response => {
+    if (!response.ok) {
+      //manejo el error
+      throw new Error(`Error HTTP: ${response.status} ${response.statusText}`);
+    }
+    return response.json();
+  })
   .then(data => {
     console.log("Detalle de película:", data);
 
@@ -100,7 +105,7 @@ function modalVoto(){
     //Crear contenedor
     const contenedor = document.createElement("div");
     contenedor.style.position = "relative";
-    contenedor.style.padding = "20px";
+    contenedor.style.padding = "30px";
 
     contenedor.innerHTML=`
     <div class="w90 pt0-5">
@@ -173,3 +178,52 @@ function mostrarError(contenedor){
    <img src="assets/imgs/advertencia.png" width="90px" class="pt1 pl2">
   `;
 }
+
+
+//Pasar el valor seleccionado a la API. Es una SIMULACIÓN ya que necesito tener una sesión autorizada para realizarlo realmente. Me va a tirar error
+
+let postEndpoint;
+
+//verifico si es pelicula o serie y mantengo su id
+if (tipo === "pelicula") {
+  postEndpoint = `https://api.themoviedb.org/3/movie/${id}/rating`;
+} else if (tipo === "serie") {
+  postEndpoint = `https://api.themoviedb.org/3/tv/${id}/rating`;
+}
+
+//creo el Headers
+const myPostHeaders = {
+  "Authorization": "Bearer " + myAPIKey,
+  "Content-Type": "application/json",
+  "Accept": "application/json"
+};
+
+//le paso el contenido que voy a enviar
+const dataToSend = {
+  value: valorSeleccionado
+};
+
+const myPostParams = {
+  method: "POST",
+  headers: myPostHeaders,
+  body: JSON.stringify(dataToSend)
+};
+
+fetch(postEndpoint, myPostParams)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`Error HTTP: ${response.status} ${response.statusText}`);
+      }
+      return response.json();
+    })
+  .then(data => {
+    console.log("Respuesta simulada:", data);
+    if (data.success) {
+      console.log("Simulación exitosa.");
+    } else {
+      console.warn("Simulación con error lógico:", data.status_message);
+    }
+  })
+  .catch(error => {
+    console.error("Error al simular POST:", error.message);
+  });

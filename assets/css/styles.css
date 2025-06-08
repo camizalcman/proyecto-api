@@ -283,7 +283,6 @@ html {
     background-color: white;
     border-radius: 12px;
     min-height: 2.8em;
-    margin-top: 1em;
     color:#0b0f36;
     font-size: medium;
     width: 50%;
@@ -305,4 +304,60 @@ dialog::backdrop {
   background: rgba(0, 0, 0, 0.4);
 }
 
+
+/*TABLETS*/
+  @media screen and (max-width: 1023px)  {
+    .w100t{
+        width: 100%;
+    }
+
+    .w90t{
+        width: 90%;
+    }
+
+    .w30t{
+        width: 30%;
+    }
+
+    .bordeRojot{
+        border: 3px solid red;
+    }
+
+    aside {
+        display: none !important;
+        width: 0 !important;
+    }
+
+    .dft{
+        display: flex;
+    }
+
+    .columnat{
+        flex-direction: column;
+    }
+
+    .principal {
+        width: 100% !important;
+        margin-left: 0 !important;
+    }
+}
+
+ /*MOBILE*/
+@media screen and (max-width: 767px) {
+    .w100m{
+        width: 100%;
+    }
+
+    .w90m{
+        width: 90%;
+    }
+
+    .displayNonem{
+        display: none;
+    }
+
+    .bordeRojom{
+        border: 3px solid rgb(21, 255, 0);
+    }
+}
 
