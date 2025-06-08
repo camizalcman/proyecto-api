@@ -72,16 +72,16 @@ fetch(myRequestDetalle)
     }
 
     const movieDiv = document.createElement("div");
-    movieDiv.classList.add("df", "spaceb")
+    movieDiv.classList.add("df", "spaceb", "wrapm")
     movieDiv.innerHTML = `
-        <div class="w50 vh60">
+        <div class="w50 vh60 w100m">
           <img src="https://image.tmdb.org/t/p/w500${data.backdrop_path}" alt="${titulo}" class="detalle-image posRel">
         </div>
         <div class="df pt0-5 puntaje posAb">
             <i class='bx  bxs-star amarillo pr0-5'></i> 
             <p class="dm-sans">${data.vote_average.toFixed(1)}</p>
         </div>
-        <div class="w48 pt0-5">
+        <div class="w48 pt0-5 w100m">
           <h3 class="dm-sansBold tituloDetalle">${titulo}</h3>
           <p class="dm-sans pt0-5 fecha mt1">${data.overview}</p>
           <p class="dm-sans pt0-5 fecha mt1">Género: ${data.genres.map(genre => genre.name).join(', ')}</p>

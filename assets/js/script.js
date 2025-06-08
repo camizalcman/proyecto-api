@@ -49,7 +49,7 @@ function cargarDataPeli(data){
 
     movies.forEach(movie => {
       const movieDiv = document.createElement("div");
-      movieDiv.classList.add("w24", "movieDiv", "df", "centerY" , "columna")
+      movieDiv.classList.add("w24", "movieDiv", "df", "centerY" , "columna", "w100m", "w30t")
       movieDiv.innerHTML = `
         <div class="fotoContainer">
           <img src="https://image.tmdb.org/t/p/w500${movie.backdrop_path}" alt="${movie.title}" class="movie-image posRel">
@@ -118,7 +118,7 @@ function cargarDataSerie(data){
 
     series.forEach(serie => {
       const serieDiv = document.createElement("div");
-      serieDiv.classList.add("w24", "movieDiv", "df", "centerY", "columna", "w90m", "w30t");
+      serieDiv.classList.add("w24", "movieDiv", "df", "centerY", "columna", "w100m", "w30t");
       serieDiv.innerHTML = `
         <div class="fotoContainer">
           <img src="https://image.tmdb.org/t/p/w500${serie.backdrop_path}" alt="${serie.name}" class="movie-image posRel">

@@ -340,6 +340,10 @@ dialog::backdrop {
         width: 100% !important;
         margin-left: 0 !important;
     }
+
+    .fStartt{
+    justify-content: start;
+}
 }
 
  /*MOBILE*/
@@ -359,5 +363,9 @@ dialog::backdrop {
     .bordeRojom{
         border: 3px solid rgb(21, 255, 0);
     }
+
+    .wrapm{
+    flex-wrap: wrap;
+}
 }
 
