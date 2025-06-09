@@ -11,6 +11,10 @@
     display: flex;
 }
 
+.none{
+    display: none;
+}
+
 .wrap{
     flex-wrap: wrap;
 }
@@ -207,6 +211,7 @@ aside{
     padding-top: 2em;
     border-radius: 0px 26px 26px 0px;
     background-color: #0b0f36;
+    transition: transform 0.3s ease;
 }
 
 html {
@@ -343,7 +348,26 @@ dialog::backdrop {
 
     .fStartt{
     justify-content: start;
-}
+    }
+
+    .navAbajo{
+        display: flex;
+        position:fixed;
+        bottom: 0;
+        background-color: #0b0f36;
+        height: 4em;
+        width: 100%;
+    }
+
+    .ulNavAbajo{
+        width: 80%;
+        list-style: none;
+    }
+
+    .textNonet{
+        text-decoration: none;
+    }
+   
 }
 
  /*MOBILE*/
@@ -366,6 +390,14 @@ dialog::backdrop {
 
     .wrapm{
     flex-wrap: wrap;
-}
+    }
+
+    .h50m{
+        height: 50vh;
+    }
+
+    main {
+    padding-bottom: 80px; 
+     }
 }
 

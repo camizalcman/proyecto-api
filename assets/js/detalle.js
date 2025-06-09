@@ -74,7 +74,7 @@ fetch(myRequestDetalle)
     const movieDiv = document.createElement("div");
     movieDiv.classList.add("df", "spaceb", "wrapm")
     movieDiv.innerHTML = `
-        <div class="w50 vh60 w100m">
+        <div class="w50 vh60 w100m h50m">
           <img src="https://image.tmdb.org/t/p/w500${data.backdrop_path}" alt="${titulo}" class="detalle-image posRel">
         </div>
         <div class="df pt0-5 puntaje posAb">
@@ -98,7 +98,7 @@ let valorSeleccionado;
 
 function modalVoto(){
     const modal = document.getElementById("miModal");
-    modal.classList.add("modalEstilo")
+    modal.classList.add("modalEstilo", "w90t")
 
     modal.innerHTML = "";
 
