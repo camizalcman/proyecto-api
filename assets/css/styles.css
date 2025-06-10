@@ -412,6 +412,9 @@ dialog::backdrop {
         text-decoration: none;
     }
    
+    .displayNonet{
+        display: none;
+    }
 }
 
  /*MOBILE*/
