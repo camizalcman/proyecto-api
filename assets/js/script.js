@@ -49,9 +49,9 @@ function cargarDataPeli(data){
 
     movies.forEach(movie => {
       const movieDiv = document.createElement("div");
-      movieDiv.classList.add("w24", "movieDiv", "df", "centerY" , "columna", "w100m", "w30t")
+      movieDiv.classList.add("w24", "movieDiv", "df", "centerY" , "columna", "w100m", "w30t", "articulos")
       movieDiv.innerHTML = `
-        <div class="fotoContainer">
+        <div class="fotoContainer w100m">
           <img src="https://image.tmdb.org/t/p/w500${movie.backdrop_path}" alt="${movie.title}" class="movie-image posRel">
         </div>
         <div class="df pt0-5 puntaje posAb">
@@ -118,10 +118,10 @@ function cargarDataSerie(data){
 
     series.forEach(serie => {
       const serieDiv = document.createElement("div");
-      serieDiv.classList.add("w24", "movieDiv", "df", "centerY", "columna", "w100m", "w30t");
+      serieDiv.classList.add("w24", "movieDiv", "df", "centerY", "columna", "w100m", "w30t", "articulos");
       serieDiv.innerHTML = `
-        <div class="fotoContainer">
-          <img src="https://image.tmdb.org/t/p/w500${serie.backdrop_path}" alt="${serie.name}" class="movie-image posRel">
+        <div class="fotoContainer w100m">
+          <img src="https://image.tmdb.org/t/p/w500${serie.backdrop_path}" alt="${serie.name}" class="movie-image posRel>
         </div>
         <div class="df pt0-5 puntaje posAb">
             <i class='bx  bxs-star amarillo pr0-5'></i> 
@@ -141,3 +141,52 @@ function cargarDataSerie(data){
       seriesContainer.appendChild(serieDiv);
     });
 }
+
+//animaciones
+  const rotar = [
+    { transform: "rotate(0deg)" },
+    { transform: "rotate(360deg)" }
+  ];
+
+   const rotarTiming = {
+    duration: 1000,
+    easing: "linear",
+  };
+
+
+ function girarRollo() {
+    const rollos = document.querySelectorAll(".rollo");
+
+    rollos.forEach(rollo => {
+      const animacionRollo = rollo.animate(rotar, rotarTiming);
+    });
+  }
+
+  girarRollo()
+
+ function escribirTexto(elemento, texto) {
+  let i = 0;
+  const intervalo = setInterval(() => {
+    elemento.textContent += texto[i];
+    i++;
+    if (i >= texto.length) clearInterval(intervalo);
+  }, 80);
+}
+
+const parrafo = document.querySelector('#texto');
+escribirTexto(parrafo, 'Nuevos estrenos');
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("show"); // entry.target para el elemento
+    } else {
+      entry.target.classList.remove("show");
+    }
+  });
+});
+
+const hiddenElements = document.querySelectorAll(".hidden"); // el selector de clase lleva punto
+hiddenElements.forEach((el) => observer.observe(el));
+
+

@@ -227,3 +227,64 @@ fetch(postEndpoint, myPostParams)
   .catch(error => {
     console.error("Error al simular POST:", error.message);
   });
+
+  //animaciones
+  const rotar = [
+    { transform: "rotate(0deg)" },
+    { transform: "rotate(360deg)" }
+  ];
+
+   const rotarTiming = {
+    duration: 1000,
+    easing: "linear",
+  };
+
+
+ function girarRollo() {
+    const rollos = document.querySelectorAll(".rollo");
+
+    rollos.forEach(rollo => {
+      const animacionRollo = rollo.animate(rotar, rotarTiming);
+    });
+  }
+
+  girarRollo()
+
+  const pochoclo = document.getElementById('pochoclo');
+
+window.addEventListener('scroll', () => {
+  const scrollY = window.scrollY;          
+  const maxScroll = 400;                   
+  const progreso = Math.min(scrollY / maxScroll, 1);  
+
+  // Escala de 1 a 0.5 (achicamos)
+  const scale = 1 - progreso * 0.5;
+
+  // Movimiento Y: de 0 a -150px (sube)
+  const translateY = -progreso * 150;
+
+  pochoclo.style.transform = `translateY(${translateY}px) scale(${scale})`;
+});
+
+
+ function escribirTexto(elemento, texto) {
+  let i = 0;
+  const intervalo = setInterval(() => {
+    elemento.textContent += texto[i];
+    i++;
+    if (i >= texto.length) clearInterval(intervalo);
+  }, 50);
+}
+
+const parrafo = document.querySelector('#texto');
+
+const observer = new IntersectionObserver((entries, observer) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      escribirTexto(parrafo, 'El arte audiovisual nos conecta con historias que transforman');
+      observer.unobserve(parrafo); 
+    }
+  });
+}, { threshold: 0.5 }); // se activa cuando al menos 50% del elemento está visible
+
+observer.observe(parrafo);
