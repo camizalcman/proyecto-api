@@ -10,7 +10,6 @@ console.log("Tipo:", tipo);
 
 //verifico si es película o serie y armo la URL con su ID correspondiente
 let postURL;
-
 if (tipo === "pelicula") {
   postURL = `https://api.themoviedb.org/3/movie/${id}?language=es-ES`;
 } else if (tipo === "serie") {
@@ -41,7 +40,7 @@ fetch(myRequestDetalle)
   })
   .then(data => {
     console.log("Detalle de película:", data);
-
+    //llamo a la funcion que arme el detalle de la pelicula
     setTimeout(()=> {
       armarDetalle(data, tipo)
     }, 200) 
@@ -52,7 +51,7 @@ fetch(myRequestDetalle)
     mostrarError("error")
   });
 
-
+  //funcion para armar el detalle de la pelicula
   function armarDetalle(data, tipo){
     const container = document.getElementById("detalle-container");
     container.classList.add("w90","centerX", "centerY", "spaceb")
@@ -228,7 +227,9 @@ fetch(postEndpoint, myPostParams)
   });
 
 
-  //animaciones
+  //ANIMACIONES
+
+  //rotar el rollo para el estado pendiente
   const rotar = [
     { transform: "rotate(0deg)" },
     { transform: "rotate(360deg)" }
@@ -238,7 +239,6 @@ fetch(postEndpoint, myPostParams)
     duration: 1000,
     easing: "linear",
   };
-
 
  function girarRollo() {
     const rollos = document.querySelectorAll(".rollo");
@@ -250,17 +250,18 @@ fetch(postEndpoint, myPostParams)
 
   girarRollo()
 
+  //animacion pochoclo
   const pochoclo = document.getElementById('pochoclo');
 
-window.addEventListener('scroll', () => {
+  window.addEventListener('scroll', () => {
   const scrollY = window.scrollY;          
   const maxScroll = 400;                   
   const progreso = Math.min(scrollY / maxScroll, 1);  
 
-  // Escala de 1 a 0.5 (achicamos)
+  //Escala de 1 a 0.5 (se achica)
   const scale = 1 - progreso * 0.5;
 
-  // Movimiento Y: de 0 a -150px (sube)
+  //Movimiento Y: de 0 a -150px (sube)
   const translateY = -progreso * 150;
 
   pochoclo.style.transform = `translateY(${translateY}px) scale(${scale})`;

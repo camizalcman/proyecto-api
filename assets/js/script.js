@@ -7,6 +7,7 @@ const myHeaders = {
     "Accept": "application/json" //declaro el tipo de contenido que acepto en la respuesta
 }
 
+//armo la URL
 const moviesURL = new URL("https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=es-ES&page=1&sort_by=popularity.desc");
 
 const myRequestParams = {
@@ -14,28 +15,32 @@ const myRequestParams = {
   headers: myHeaders
 };
 
+//hago la request
 const myRequestMovies = new Request(moviesURL, myRequestParams);
 const myDataMovies = fetch(myRequestMovies);
 
 fetch(myRequestMovies)
     .then(response => {
+        //manejo la respuesta
         if (!response.ok) {
           throw new Error(`Error HTTP: ${response.status} ${response.statusText}`);
         }
         return response.json();
       })
   .then(data => {
-    
+    //llamo a la funcion para mostrar las pelis y le pongo un tiempo de carga para mostrar el estado pendiente
     setTimeout(()=> {
       cargarDataPeli(data)
     }, 1000)
   })
+  //manejo el error
   .catch(error => {
     console.error("Ocurrió un error:", error);
     loadingDiv.innerHTML=""
     mostrarError("error")
   });
 
+//div en el que se mustra el estado pendiente, de carga
 const loadingDiv = document.getElementById("loading");
 
 function cargarDataPeli(data){
@@ -45,6 +50,7 @@ function cargarDataPeli(data){
     const container = document.getElementById("movies-container");
     container.classList.add("w90","df", "wrap", "centerX", "centerY", "spaceb");
 
+    //le saco el contenido al div de carag
     loadingDiv.innerHTML=""
 
     movies.forEach(movie => {
@@ -73,6 +79,7 @@ function cargarDataPeli(data){
     });
 }
 
+//funcion para mostrar el error
 function mostrarError(contenedor){
   const divError =document.getElementById(contenedor);
   divError.innerHTML = ` 
@@ -89,17 +96,20 @@ const myDataSeries = fetch(myRequestSeries);
 
 fetch(myRequestSeries)
     .then(response => {
+        //manejo la respuesta
         if (!response.ok) {
           throw new Error(`Error HTTP: ${response.status} ${response.statusText}`);
         }
         return response.json();
       })
   .then(data => {
+    //llamo a la funcion para mostrar las series y le pongo un tiempo de carga para mostrar el estado pendiente
     setTimeout(()=> {
       cargarDataSerie(data)
     }, 1000) 
   })
   .catch(error => {
+    //manejo el error
     console.error("Ocurrió un error:", error);
     loadingDivS.innerHTML=""
     mostrarError("error1")
@@ -142,7 +152,9 @@ function cargarDataSerie(data){
     });
 }
 
-//animaciones
+//ANIMACIONES
+
+//rotar el rollo para el estado pendiente
   const rotar = [
     { transform: "rotate(0deg)" },
     { transform: "rotate(360deg)" }
@@ -152,7 +164,6 @@ function cargarDataSerie(data){
     duration: 1000,
     easing: "linear",
   };
-
 
  function girarRollo() {
     const rollos = document.querySelectorAll(".rollo");
@@ -164,6 +175,7 @@ function cargarDataSerie(data){
 
   girarRollo()
 
+  
  function escribirTexto(elemento, texto) {
   let i = 0;
   const intervalo = setInterval(() => {
