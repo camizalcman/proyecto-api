@@ -286,6 +286,6 @@ const observer = new IntersectionObserver((entries, observer) => {
       observer.unobserve(parrafo); 
     }
   });
-}, { threshold: 0.5 }); // se activa cuando al menos 50% del elemento está visible
+}, { threshold: 0.5 }); //se activa cuando al menos 50% del elemento está visible
 
 observer.observe(parrafo);
