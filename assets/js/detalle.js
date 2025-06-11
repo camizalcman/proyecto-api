@@ -184,11 +184,10 @@ function mostrarError(contenedor){
 
 let postEndpoint;
 
-//verifico si es pelicula o serie y mantengo su id
 if (tipo === "pelicula") {
-  postEndpoint = `https://api.themoviedb.org/3/movie/${id}/rating`;
+  postEndpoint = `https://api.themoviedb.org/3/movie/${id}/rating?guest_session_id=simulada`;
 } else if (tipo === "serie") {
-  postEndpoint = `https://api.themoviedb.org/3/tv/${id}/rating`;
+  postEndpoint = `https://api.themoviedb.org/3/tv/${id}/rating?guest_session_id=simulada`;
 }
 
 //creo el Headers
@@ -200,7 +199,7 @@ const myPostHeaders = {
 
 //le paso el contenido que voy a enviar
 const dataToSend = {
-  value: valorSeleccionado
+   value: parseFloat(valorSeleccionado).toFixed(1) //la api tiene valores con un decimal (del 1.0 al 10.0)
 };
 
 const myPostParams = {
@@ -227,6 +226,7 @@ fetch(postEndpoint, myPostParams)
   .catch(error => {
     console.error("Error al simular POST:", error.message);
   });
+
 
   //animaciones
   const rotar = [
